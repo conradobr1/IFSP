@@ -1,5 +1,5 @@
 # Compras 10/02/2025 
-1. kwi
+1. kiwi
 1. Maça
 2. Pão 
 3. Leite 
