@@ -2,8 +2,8 @@
 
 
 ## HORTIFRUTIGRANJEIRO
-1. kwi
-2. Maça
+1. kiwi
+2. Maçã
 3. Pera
 4. Mamão
 5. Abacaxi
