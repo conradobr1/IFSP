@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dart Eficiente</title>
+</head>
+<body>
+    <div id="content" class="content">
+        <div id="table-of-contents" role="doc-toc">
+        <h2 style="color:#4169E1">Índice</h2>
+        <div id="text-table-of-contents" role="doc-toc">
+        <ul>
+        <li><a href="#org458918b">1. Dart eficiente</a>
+        <ul>
+        <li><a href="#org0352202">1.1. Os guias</a></li>
+        <li><a href="#org68d3834">1.2. Como ler os guias</a></li>
+        <li><a href="#orgfff07b2">1.3. Glossário</a></li>
+        </ul>
+        </li>
+        </ul>
+        </div>
+        </div>
+        <div id="outline-container-org458918b" class="outline-2">
+        <h2 style="color:rgba(4,89,156,0.9);" id="org458918b"><span class="section-number-2">1.</span> Dart eficiente</h2>
+        <div class="outline-text-2" id="text-1">
+        <p style="text-align: justify;">
+        Nos últimos anos, escrevemos muito código Dart e aprendemos muito sobre o que funciona bem e o que não funciona. Estamos compartilhando isso com você para que você também possa escrever código consistente, robusto e rápido. Existem dois temas abrangentes:
+        </p>
+        
+        <ol class="org-ol">
+        <li>Ser consistente. Quando se trata de coisas como formatação e maiúsculas e minúsculas, os argumentos sobre qual é o melhor são subjetivos e impossíveis de resolver. O que sabemos é que ser consistente é objetivamente útil. Se dois pedaços de código parecem diferentes, deve ser porque são diferentes de alguma forma significativa. Quando um trecho de código se destaca e chama sua atenção, isso deve acontecer por um motivo útil.</li>
+        
+        <li>Seja breve. O Dart foi projetado para ser familiar, por isso herda muitas das mesmas instruções e expressões de C, Java, JavaScript e outras linguagens. Mas criamos o Dart porque há muito espaço para melhorar o que essas linguagens oferecem. Adicionamos vários recursos, desde a interpolação de strings até a inicialização de formals, para ajudá-lo a expressar sua intenção de maneira mais simples e fácil. Se houver várias maneiras de dizer algo, geralmente você deve escolher a mais concisa. Isso não quer dizer que você deva fazer <a href=" https://en.wikipedia.org/wiki/Code_golf"> code golf</a>  para comprimir um programa inteiro em uma única linha. O objetivo é um código que seja econômico e não denso.</li>
+        </ol>
+        </div>
+        
+        <div id="outline-container-org0352202" class="outline-3">
+        <h3 style="color:#04599c" id="org0352202"><span class="section-number-3">1.1.</span> Os guias</h3>
+        <div class="outline-text-3" id="text-1-1">
+        <p style="text-align: justify;">
+        Dividimos as diretrizes em algumas páginas separadas para facilitar a digestão:
+        </p>
+        
+        <ul class="org-ul">
+        <li>Guia de Estilo – Define as regras para layout e organização do código, ou pelo menos as partes quedart formatnão funcionam para você. O guia de estilo também especifica como os identificadores são formatados:camelCase,using_underscores, etc.</li>
+        
+        <li>Guia de documentação – informa tudo o que você precisa saber sobre o que está contido nos comentários. Comentários de documentos e comentários de código comuns e comuns.</li>
+        
+        <li>Guia de uso – ensina como fazer o melhor uso dos recursos da linguagem para implementar o comportamento. Se estiver em uma declaração ou expressão, será abordado aqui.</li>
+        
+        <li>Guia de Design – Este é o guia mais simples, mas com o escopo mais amplo. Ele aborda o que aprendemos sobre como projetar APIs consistentes e utilizáveis ​​para bibliotecas. Se estiver em uma assinatura de tipo ou declaração, isso será repassado.</li>
+        </ul>
+        
+        <p style="text-align: justify;">
+        Para links para todas as diretrizes, consulte o resumo .
+        </p>
+        </div>
+        </div>
+        
+        <div id="outline-container-org68d3834" class="outline-3">
+        <h3 style="color:hsl(206,95%,31%);" id="org68d3834"><span class="section-number-3">1.2.</span> Como ler os guias</h3>
+        <div class="outline-text-3" id="text-1-2">
+        <p style="text-align: justify;">
+        Cada guia é dividido em algumas seções. As seções contêm uma lista de diretrizes. Cada diretriz começa com uma destas palavras:
+        </p>
+        
+        <ul class="org-ul">
+        <li>As diretrizes FAÇA descrevem práticas que sempre devem ser seguidas. Quase nunca haverá uma razão válida para se afastar deles.</li>
+        
+        <li>As diretrizes NÃO são o contrário: coisas que quase nunca são uma boa ideia. Felizmente, não temos tantos deles quanto outras línguas porque temos menos bagagem histórica.</li>
+        
+        <li>As diretrizes PREFERIR são práticas que você deve seguir. No entanto, pode haver circunstâncias em que faça sentido fazer o contrário. Apenas certifique-se de compreender todas as implicações de ignorar a diretriz ao fazê-lo.</li>
+        
+        <li>As diretrizes EVITAR são duplas para "preferir": coisas que você não deve fazer, mas onde pode haver boas razões para fazê-lo em raras ocasiões.</li>
+        
+        <li>As diretrizes do CONSIDERAR são práticas que você pode ou não querer seguir, dependendo das circunstâncias, dos precedentes e de sua preferência.</li>
+        </ul>
+        
+        <p style="text-align: justify;">
+        Algumas diretrizes descrevem uma exceção onde a regra não se aplica. Quando listadas, as exceções podem não ser exaustivas – talvez você ainda precise usar seu julgamento em outros casos.
+        </p>
+        
+        <p style="text-align: justify;">
+        Parece que a polícia vai bater na sua porta se você não amarrar os cadarços corretamente. As coisas não estão tão ruins. A maioria das diretrizes aqui são de bom senso e somos todos pessoas razoáveis. O objetivo, como sempre, é um código bonito, legível e de fácil manutenção.
+        </p>
+        
+        <p style="text-align: justify;">
+        O analisador Dart fornece um linter para ajudá-lo a escrever um código bom e consistente que siga essas e outras diretrizes. Se existir uma ou mais regras de linter que possam ajudá-lo a seguir uma diretriz, a diretriz está vinculada a essas regras. Os links usam o seguinte formato:
+        </p>
+        
+        <p style="text-align: justify;">
+        Linter rule: <a href="https://dart.dev/tools/linter-rules/unnecessary_getters_setters">unnecessary_getters_setters</a>
+        </p>
+        
+        <p style="text-align: justify;">
+        Para saber como usar o linter, consulte Habilitando regras de linter e a lista de regras de linter.
+        </p>
+        </div>
+        </div>
+        
+        <div id="outline-container-orgfff07b2" class="outline-3">
+        <h3 id="orgfff07b2"><span class="section-number-3">1.3.</span> Glossário</h3>
+        <div class="outline-text-3" id="text-1-3">
+        <p style="text-align: justify;">
+        Para manter as diretrizes breves, usamos alguns termos abreviados para nos referirmos a diferentes construções do Dart.
+        </p>
+        
+        <ul class="org-ul">
+        <li>Um membro da biblioteca é um campo, getter, setter ou função de nível superior. Basicamente, qualquer coisa de nível superior que não seja um tipo.</li>
+        
+        <li>Um membro de classe é um construtor, campo, getter, setter, função ou operador declarado dentro de uma classe. Os membros da classe podem ser de instância ou estáticos, abstratos ou concretos.</li>
+        
+        <li>Um membro é um membro da biblioteca ou um membro da classe.</li>
+        
+        <li>Uma variável , quando usada geralmente, refere-se a variáveis ​​de nível superior, parâmetros e variáveis ​​locais. Não inclui campos estáticos ou de instância.</li>
+        
+        <li>Um tipo é qualquer declaração de tipo nomeado: uma classe, typedef ou enum.</li>
+        
+        <li>Uma propriedade é uma variável de nível superior, getter (dentro de uma classe ou no nível superior, instância ou estática), setter (mesmo) ou campo (instância ou estático). Aproximadamente qualquer construção nomeada "semelhante a um campo".</li>
+        </ul>
+        </div>
+        </div>
+        </div>
+        </div>
+        <div id="postamble" class="status">
+        <p style="text-align: justify;" class="author">Author: Mauro Jacob Honorato</p>
+        <p style="text-align: justify;" class="date">Created: 2024-02-28 Wed 13:57</p>
+        <p style="text-align: justify;" class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+        </div>           
+</body>
+</html>
