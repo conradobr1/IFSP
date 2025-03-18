@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Descricao</title>
+</head>
+<body>
+    <h2>Tipos</h2>
+
+<dl>
+    <ul style="list-style-type:disc;">
+  <dt>O comando while permite que um certo trecho de programa seja executado ENQUANTO uma certa condição for verdadeira. A forma do comando while é a seguinte:
+    while (condição)
+    </dt>
+  <dd>while (condição)</dd>
+  <dd>{</dd>
+        <dd>// comandos a serem repetidos</dd>
+        <dd>// comandos a serem repetidos</dd>
+        <dd>}</dd>
+        <dd>// comandos após o 'while'</dd>
+  <dt>O funcionamento é o seguinte:
+    Testa a condição;
+    Se a  condição for falsa então pula todos os comandos do bloco subordinado ao while e passa a executar os comandos após o bloco do while.
+    Se  condição for verdadeira então executa cada um dos comandos do bloco subordinado ao while.
+    Após executar o último comando do bloco do while volta ao passo 1.</dt>
+  </ul>
+</dl>
+
+<dl>
+    <ul style="list-style-type:disc;">
+    <dt>O comando do-while permite que um certo trecho de programa seja executado ENQUANTO uma certa condição for verdadeira. A forma do comando do-while é a seguinte:
+      </dt>
+    <dd>do</dd>
+    <dd>{</dd>
+          <dd>// comandos a serem repetidos</dd>
+          <dd>// comandos a serem repetidos</dd>
+          <dd>} while (condição);</dd>
+          <dd>// comandos após o 'do-while'</dd>
+    <dt>O funcionamento é o seguinte:
+        Executa os comando dentro do bloco do-while;
+        Testa a condição;
+        Se a  condição for falsa então executa o comando que está logo após o bloco subordinado ao do-while .
+        Se  condição for verdadeira então volta ao passo 1.</dt>
+    </ul>
+  </dl>
+
+  <dl>
+    <ul style="list-style-type:disc;">
+    <dt>O comando for permite que um certo trecho de programa seja executado um determinado número de vezes.
+        A forma do comando for é a seguinte:
+      </dt>
+    <dd>for (comandos de inicialização;condição de teste;incremento/decremento)</dd>
+    <dd>{</dd>
+          <dd>// comandos a serem repetidos</dd>
+          <dd>// comandos a serem repetidos</dd>
+          <dd>} while (condição);</dd>
+          <dd>// comandos após o 'for'</dd>
+    <dt>O funcionamento é o seguinte:
+        Executa os comandos de inicialização;
+        Testa a condição;
+        Se a  condição for falsa então executa o comando que está logo após o bloco subordinado ao for .
+        Se  condição for verdadeira então executa os comandos que estão subordinados ao for;
+        Executa os comandos de incremento/decremento;
+        Volta ao passo 2.</dt>
+    </ul>
+  </dl>
+
+  <dl>
+    <ul style="list-style-type:disc;">
+    <dt>Os laços em C possuem dois comandos de desvios: break e continue. Estes comandos funcionam com todos os comandos de repetição.
+      </dt>
+    <dd>for (comandos de inicialização;condição de teste;incremento/decremento)</dd>
+    <dd>{</dd>
+          <dd>// comandos a serem repetidos</dd>
+          <dd>// comandos a serem repetidos</dd>
+          <dd>} while (condição);</dd>
+          <dd>// comandos após o 'for'</dd>
+    <dt>// Este programa le NO MAXIMO 3 números positivos
+        // Caso um número negativo seja digitado no meio da seqüência o laço é
+        // encerrado de imediato
+        #include <stdio.h>
+        #include <conio.h>
+        
+        void main()
+        {
+          int contador, numero;
+          for (contador = 1; contador <= 3; contador = contador+1)
+          {
+            scanf("%d",&numero);
+            if (numero < 0)
+                break;   // encerra o laço neste ponto !!!
+          }
+          printf ("Foram digitados %d numeros validos", contador-1);
+          getch();
+        }</dt>
+    </ul>
+  </dl>
+
+
+</body>
+</html>
