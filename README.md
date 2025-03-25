@@ -7,3 +7,4 @@ Desenvolvimento WEB <br>
 3 [WEEK](https://github.com/conradobr1/IFSP/tree/main/Desenvolvimento%20WEB/3week/code)<br>
 4 [WEEK](https://github.com/conradobr1/IFSP/tree/main/Desenvolvimento%20WEB/4Week/html_2024_aula04-main)<br>
 5 [WEEK](https://github.com/conradobr1/IFSP/tree/main/Desenvolvimento%20WEB/5Week)<br>
+6 [WEEK](https://github.com/conradobr1/IFSP/tree/main/Desenvolvimento%20WEB/6Week/html_css_2024_aula1-main)<br>
