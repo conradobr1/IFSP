@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flutter</title>
+    <style>
+        #table-of-contents {
+            width: 350px;
+            background-color: beige;
+            border-radius: 10px;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    
+<div id="content" class="content">
+    </div>
+    <div id="outline-container-org5d919fa" class="outline-2">
+    <h2 id="org5d919fa"><span class="section-number-2">1.</span> Buscando dados da internet</h2>
+    <div class="outline-text-2" id="text-1">
+    <p>
+    O pacote http permite realizar requisições http. A app funciona como um navegador usando http.
+    </p>
+    </div>
+    
+    <div id="outline-container-org7080fb4" class="outline-3">
+    <h3 id="org7080fb4"><span class="section-number-3">1.1.</span> Adicione o pacote http</h3>
+    <div class="outline-text-3" id="text-1-1">
+    <p>
+    Para adicionar o pacote http à sua app execute:
+    </p>
+    
+    <pre class="example" id="orgc2b48ea">
+    $ flutter pub add http
+    </pre>
+    
+    <p>
+    Importe o pacote http:
+    </p>
+    
+    <div class="org-src-container">
+    <pre class="src src-dart">import 'package:http/http.dart' as http;
+    </pre>
+    </div>
+    
+    <p>
+    Para usar no Android, edite AndroidManifest.xml:
+    </p>
+    
+    <pre class="example">
+    &lt;!-- Required to fetch data from the internet. --&gt;
+    &lt;uses-permission android:name="android.permission.INTERNET" /&gt;
+    </pre>
+    
+    <p>
+    Para usar no macOS edite os arquivos macos/Runner/DebugProfile.entitlements e macos/Runner/Release.entitlements para incluir:
+    </p>
+    
+    <pre class="example">
+    &lt;!-- Required to fetch data from the internet. --&gt;
+    &lt;key&gt;com.apple.security.network.client&lt;/key&gt;
+    &lt;true/&gt;  
+    </pre>
+    </div>
+    </div>
+    
+    <div id="table-of-contents" role="doc-toc">
+        <h2>Table of Contents</h2>
+        <div id="text-table-of-contents" role="doc-toc">
+        <ul>
+        <li><a href="#org5d919fa">1. Buscando dados da internet</a>
+        <ul>
+        <li><a href="#org7080fb4">1.1. Adicione o pacote http</a></li>
+        <li><a href="#org7b8b384">1.2. Efetue a requisição na rede</a></li>
+        <li><a href="#org13671b4">1.3. Convertendo a resposta em um objeto Dart</a></li>
+        <li><a href="#orgae09524">1.4. Criando uma classe Endereco</a></li>
+        </ul>
+        </li>
+        </ul>
+        </div> 
+        </div>   
+
+    <div id="outline-container-org7b8b384" class="outline-3">
+    <h3 id="org7b8b384"><span class="section-number-3">1.2.</span> Efetue a requisição na rede</h3>
+    <div class="outline-text-3" id="text-1-2">
+    <p>
+    Vamos usar a api ViaCep:
+    </p>
+    
+    <pre class="example">
+    Future&lt;http.Response&gt; buscaCEP() {
+      return http.get(Uri.parse('https://viacep.com.br/ws/01001000/json/'));
+    }
+    </pre>
+    
+    <p>
+    O método http.get() retorna uma Future que contém a Response.
+    </p>
+    
+    <ul class="org-ul">
+    <li>Future é uma classe Dart para trabalhar com operações assíncronas. Um objeto Future representa um valor potencial ou erro que estará disponível em algum momento no futuro.</li>
+    
+    <li>A classe http.Response contém dados recebidos de uma chamada http bem sucedida.</li>
+    </ul>
+    </div>
+    </div>
+    
+    <div id="outline-container-org13671b4" class="outline-3">
+    <h3 id="org13671b4"><span class="section-number-3">1.3.</span> Convertendo a resposta em um objeto Dart</h3>
+    <div class="outline-text-3" id="text-1-3">
+    <p>
+    Ao invés de trabalhar com a Response diretamente, vamos converter a resposta em um objeto Dart.
+    </p>
+    </div>
+    </div>
+    
+    <div id="outline-container-orgae09524" class="outline-3">
+    <h3 id="orgae09524"><span class="section-number-3">1.4.</span> Criando uma classe Endereco</h3>
+    <div class="outline-text-3" id="text-1-4">
+    <p>
+    A classe contém o que interessa para nós, por enquanto, na resposta do servidor:
+    </p>
+    
+    <p>
+    rua, bairro, cidade
+    </p>
+    
+    <div class="org-src-container">
+    <pre class="src src-dart">class Endereco {
+      final String rua;
+      final String bairro;
+      final String cidade;
+    
+      const Endereco({
+        required this.rua,
+        required this.bairro,
+        required this.cidade,
+      });
+    
+      factory Endereco.fromJson(Map&lt;String, dynamic&gt; json) {
+        return switch (json) {
+          {
+         'logradouro': String rua,
+         'bairro': String bairro,
+         'localidade': String cidade,
+          } =&gt;
+        Endereco(
+          rua: rua,
+          bairro: bairro,
+          cidade: cidade,
+        ),
+          _ =&gt; throw const FormatException('Falha ao carregar endereço'),
+        };
+      }
+    }
+    </pre>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div id="inicio">
+        <a href="#">Início</a>
+    </div>    
+</body>
+</html>

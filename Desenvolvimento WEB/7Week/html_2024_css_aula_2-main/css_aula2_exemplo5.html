@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>State</title>
+    <style>
+        h1 /* aqui */ { 
+            color: #01579b;
+            border: 4px solid #01579b;
+            padding: 10px;
+            margin: 5px;
+            width: fit-content;
+        }
+        h2 {
+            /* aqui */
+        }
+        h3 {
+            /* aqui */
+        }
+    </style>
+</head>
+<body>
+<h1>Flutter é declarativo</h1>
+
+<p>A interface com o usuário (UI) é construída para refletir o estado atual da app.</p>
+
+<p>Quando o estado da app muda, você muda o state e isso faz a UI ser redesenhada.</p>
+
+<p>Leia depois: https://docs.flutter.dev/get-started/flutter-for/declarative</p>
+
+<h2>State</h2>
+
+<p>Estado normalmente é tudo o que existe na memória quando a app está rodando.</p>
+
+<p>Em Flutter state é qualquer dado que você usa para reconstruir a UI em qualquer momento.</p>
+
+<p>Opções:</p>
+
+<dl>
+    <dt>state efêmero</dt>
+    <dd>pode ficar em um único widget.</dd>
+    <dt>state da app</dt>
+    <dd>compartilhado em diversas partes da app.</dd>
+</dl>
+
+<h3>state efêmero</h3>
+
+<p>Dificilmente outras partes da aplicação precisam acessar esse tipo de estado.</p>
+
+  <p>Um StatefulWidget resolve os problemas de armazenamento.</p>
+
+  <p>Implementado com State e setState() em único widget.</p>
+
+<h3>state da App</h3>
+
+  <p>Estado que precisa ser guardado em diferentes sessões.</p>
+
+  <p>Exemplo: Carrinho de compras.</p>
+
+<h2>Resumo</h2>
+<h3>Final</h3>
+
+  <p>Você quem decide o que é efêmero e o que é da app.</p>
+
+  <p>Exemplo: A página atual aberta na app pode ser state efêmero (perdida no início) ou state da app (será aberta quando a aplicação for executada novamente).</p>
+</body>
+</html>
