@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layout</title>
+    
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+
+    
+    <style>
+       a:link{
+            background-color: #4d40d7; 
+            border: 3px solid #4d40d7; 
+            color: white;
+            padding: 10px 20px; 
+            border-radius: 10px; 
+            text-decoration: none; 
+            display: inline-block;
+        }
+
+        #chamada{
+            font-size: 32px;
+        }
+       span{
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        text-transform: capitalize;
+
+       }
+       #moto{
+        color: gray;
+        font-size: 24px;
+       }
+        .menu {
+            display: inline-block;
+            margin-right: 15px;
+        }
+
+        .menu i {
+            margin-right: 8px; 
+        }
+
+        #superior {
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            gap: 20px; 
+        }
+
+        
+        #botoes {
+            position: absolute; 
+            top: 10px; 
+            right: 10px; 
+        }
+        
+         #capi img {
+            width: 100%;
+            max-width: 500px; 
+            height: auto; 
+            display: block;
+            margin: 20px auto; 
+        }
+
+        #principal {
+            display: flex;
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            text-align: center; 
+            margin-top: 50px; 
+        }
+    </style>
+</head>
+<body>
+    <div id="superior" >
+        
+        <span class="menu" >plataforma<i class="material-icons">keyboard_arrow_down</i></span> 
+        <span  class="menu">soluções<i class="material-icons">keyboard_arrow_down</i></span> 
+        <span class="menu">companhia<i class="material-icons">keyboard_arrow_down</i></span> 
+        <span class="menu">comunidade<i class="material-icons">keyboard_arrow_down</i></span>
+    </div>
+    <div id="botoes">
+        <a href="#" >Exemplo</a>
+        <a href="#">Entrar</a>
+    </div>
+    <div id="principal">
+        <p id="chamada">
+            Vamos conversar 
+            as características sobre <br>
+            da plataforma       
+        </p>
+        <p id="moto">  
+            Capivara TXM conecta cada interação através de cada uma das quatro<br>
+            experiências chave através do ciclo de vida do talento.
+        </p>
+        <a href="#">Peça uma amostra</a>
+    </div>
+    <div id="capi">
+        <img src="https://iema.es.gov.br/Media/iema/Not%C3%ADcias/Capivarinha%20-%20Thassiane%20Targino%20-%20Ipram%20(1).jpeg" alt="Capivara">
+
+    </div>
+</body>
+</html>

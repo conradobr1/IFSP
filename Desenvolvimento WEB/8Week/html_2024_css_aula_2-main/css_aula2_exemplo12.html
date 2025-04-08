@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dart</title>
+    <style>
+        body {
+            
+        }
+        h1, h2, h3, h4, h5, h6 {
+            width: fit-content;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        pre {
+            width: fit-content;
+            padding: 20px;
+            margin-left: 20px;
+        }
+        a {
+            
+        }
+    </style>
+</head>
+<body>
+    <div id="content" class="content">
+        <div id="table-of-contents" role="doc-toc">
+        <h2>Table of Contents</h2>
+        <div id="text-table-of-contents" role="doc-toc">
+        <ul>
+        <li><a href="#org5e97c51">1. Preface</a>
+        <ul>
+        <li><a href="#org7f2afd3">1.1. Who should read this book</a></li>
+        <li><a href="#org38b4fdc">1.2. Why I wrote this book</a></li>
+        <li><a href="#org42e2134">1.3. Navigating this book</a></li>
+        </ul>
+        </li>
+        <li><a href="#org7c662b6">2. Learning Dart Variables</a>
+        <ul>
+        <li><a href="#orgf9cb9b1">2.1. Running a Dart Application</a></li>
+        <li><a href="#org61a6752">2.2. Working with Integer values</a></li>
+        <li><a href="#org75bd9b1">2.3. Working with double values</a></li>
+        <li><a href="#org7da281f">2.4. Working with Boolean Values</a></li>
+        <li><a href="#orge694946">2.5. Working with Strings</a></li>
+        <li><a href="#orge994d9c">2.6. Printing information to the console</a></li>
+        </ul>
+        </li>
+        </ul>
+        </div>
+        </div>
+        <div id="outline-container-org5e97c51" class="outline-2">
+        <h2 id="org5e97c51"><span class="section-number-2">1.</span> Preface</h2>
+        <div class="outline-text-2" id="text-1">
+        <p>
+        From a single code base target multiple platforms.
+        </p>
+        </div>
+        
+        <div id="outline-container-org7f2afd3" class="outline-3">
+        <h3 id="org7f2afd3"><span class="section-number-3">1.1.</span> Who should read this book</h3>
+        </div>
+        
+        <div id="outline-container-org38b4fdc" class="outline-3">
+        <h3 id="org38b4fdc"><span class="section-number-3">1.2.</span> Why I wrote this book</h3>
+        </div>
+        
+        <div id="outline-container-org42e2134" class="outline-3">
+        <h3 id="org42e2134"><span class="section-number-3">1.3.</span> Navigating this book</h3>
+        <div class="outline-text-3" id="text-1-3">
+        <p>
+        Introduction to Dart language: 1 and 2
+        Dart language: 3 to 6
+        Flutter language and widgets: 7 to 14
+        Cloud and Firebase: 15 and 16
+        Flame game engine: 17
+        </p>
+        </div>
+        </div>
+        </div>
+        
+        <div id="outline-container-org7c662b6" class="outline-2">
+        <h2 id="org7c662b6"><span class="section-number-2">2.</span> Learning Dart Variables</h2>
+        <div class="outline-text-2" id="text-2">
+        <p>
+        The keywords const and final make a variable immutable.
+        </p>
+        </div>
+        
+        <div id="outline-container-orgf9cb9b1" class="outline-3">
+        <h3 id="orgf9cb9b1"><span class="section-number-3">2.1.</span> Running a Dart Application</h3>
+        <div class="outline-text-3" id="text-2-1">
+        <p>
+        Aperte Run.
+        </p>
+        
+        <div class="org-src-container">
+        <pre class="src src-dart">void main() {
+          print('Hello, Dart!');
+        }
+        </pre>
+        </div>
+        </div>
+        </div>
+        
+        <div id="outline-container-org61a6752" class="outline-3">
+        <h3 id="org61a6752"><span class="section-number-3">2.2.</span> Working with Integer values</h3>
+        <div class="outline-text-3" id="text-2-2">
+        <p>
+        int variable store a number without a decimal point.
+        </p>
+        
+        <div class="org-src-container">
+        <pre class="src src-dart">void main() {
+          int minhaVariavel = 35;
+        
+          print(minhaVariavel);
+        }
+        </pre>
+        </div>
+        
+        <p>
+        <a href="https://api.dart.dev/stable/3.3.2/dart-core/num-class.html">int</a> is a subtype of <a href="https://api.dart.dev/stable/3.3.2/dart-core/num-class.html">num</a>.
+        </p>
+        
+        <div class="org-src-container">
+        <pre class="src src-dart">void main() {
+          // tipo rotulo = valor;
+          int minhaVariavel = 35;
+        
+          print(minhaVariavel);
+        }
+        </pre>
+        </div>
+        
+        <p>
+        int is non-nullable  
+        </p>
+        
+        <div class="org-src-container">
+        <pre class="src src-dart">void main() {
+          // tipo rotulo = null;
+          int minhaVariavel;
+        
+          print(minhaVariavel); // Error: Non-nullable variable 'minhaVariavel' must be assigned before it can be used.
+        }
+        </pre>
+        </div>
+        </div>
+        </div>
+        
+        <div id="outline-container-org75bd9b1" class="outline-3">
+        <h3 id="org75bd9b1"><span class="section-number-3">2.3.</span> Working with double values</h3>
+        <div class="outline-text-3" id="text-2-3">
+        <p>
+        <a href="https://api.dart.dev/stable/3.3.2/dart-core/double-class.html">double</a> variable store a number including a decimal point.
+        </p>
+        
+        <div class="org-src-container">
+        <pre class="src src-dart">void main() {
+          double precoMinimo = 2.99;
+        
+          print(precoMinimo);
+        }
+        </pre>
+        </div>
+        
+        <p>
+        null
+        </p>
+        
+        <div class="org-src-container">
+        <pre class="src src-dart">void main() {
+          // type label = null;
+          double precoMinimo;
+        
+          print(precoMinimo); // Error
+        }
+        </pre>
+        </div>
+        </div>
+        </div>
+        
+        <div id="outline-container-org7da281f" class="outline-3">
+        <h3 id="org7da281f"><span class="section-number-3">2.4.</span> Working with Boolean Values</h3>
+        <div class="outline-text-3" id="text-2-4">
+        <p>
+        A bool variable store a true/false value.
+        </p>
+        
+        <div class="org-src-container">
+        <pre class="src src-dart">void main() {
+          bool portaAberta = true;
+        
+          print(portaAberta);
+        }
+        </pre>
+        </div>
+        </div>
+        </div>
+        
+        <div id="outline-container-orge694946" class="outline-3">
+        <h3 id="orge694946"><span class="section-number-3">2.5.</span> Working with Strings</h3>
+        <div class="outline-text-3" id="text-2-5">
+        <p>
+        String variable store a sequence of characters.
+        </p>
+        
+        <div class="org-src-container">
+        <pre class="src src-dart">void main() {
+          String nomeCliente = 'Fulano de Tal';
+        
+          print(nomeCliente);
+        }
+        </pre>
+        </div>
+        
+        <p>
+        Multiline String
+        </p>
+        
+        <div class="org-src-container">
+        <pre class="src src-dart">void main() {
+          String descricao = """
+          Flutter widgets are built using
+          a modern framework that
+          takes inspiration from React.
+          """;
+        
+          print(descricao);
+        }
+        </pre>
+        </div>
+        
+        <p>
+        Strings use UTF-16 (support emojis)
+        </p>
+        </div>
+        </div>
+        
+        <div id="outline-container-orge994d9c" class="outline-3">
+        <h3 id="orge994d9c"><span class="section-number-3">2.6.</span> Printing information to the console</h3>
+        <div class="outline-text-3" id="text-2-6">
+        <p>
+        Use a print statement to display information from an application.
+        </p>
+        
+        <div class="org-src-container">
+        <pre class="src src-dart">void main() {
+          String nomeCliente = 'Fulano de Tal';
+          int idadeCliente = 22;
+        
+          print('Nome: ');
+          print(nomeCliente);
+          print('Idade: ');
+          print(idadeCliente);
+        }
+        </pre>
+        </div>
+        
+        <p>
+        Use the $ character to reference a variable in a print statement.
+        </p>
+        
+        <p>
+        $ replace label with variable value
+        </p>
+        
+        <div class="org-src-container">
+        <pre class="src src-dart">void main() {
+          String nomeCliente = 'Fulano de Tal';
+          int idadeCliente = 22;
+        
+          print('Nome: $nomeCliente');
+          print('Idade: $idadeCliente');
+        }
+        </pre>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>        
+</body>
+</html>
