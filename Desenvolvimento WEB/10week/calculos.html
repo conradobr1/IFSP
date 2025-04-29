@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS - Operações</title>
+    <script>
+    window.onload = inicio;
+
+    function inicio() {
+        document.getElementById('botaoSoma').addEventListener('click', soma);
+        document.getElementById('botaoSub').addEventListener('click', subtracao);
+        document.getElementById('botaoMult').addEventListener('click', multiplicacao);
+        document.getElementById('botaoDiv').addEventListener('click', divisao);
+        document.getElementById('botaoExp').addEventListener('click', exponenciacao);
+        document.getElementById('botaoResto').addEventListener('click', resto);
+        document.getElementById('botaoInc').addEventListener('click', incremento);
+        document.getElementById('botaoDec').addEventListener('click', decremento);
+    }
+
+    function soma() {
+        let saida = document.getElementById('saida');
+        let x = 7;
+        let y = 3;
+        saida.innerHTML = x + y;
+    }
+
+    function subtracao() {
+        let saida = document.getElementById('saida');
+        let x = 7;
+        let y = 3;
+        saida.innerHTML = x - y;
+    }
+
+    function multiplicacao() {
+        let saida = document.getElementById('saida');
+        let x = 7;
+        let y = 3;
+        saida.innerHTML = x * y;
+    }
+
+    function divisao() {
+        let saida = document.getElementById('saida');
+        let x = 7;
+        let y = 3;
+        saida.innerHTML = (x / y).toFixed(2);
+    }
+
+    function exponenciacao() {
+        let saida = document.getElementById('saida');
+        let x = 7;
+        let y = 3;
+        saida.innerHTML = x ** y;
+    }
+
+    function resto() {
+        let saida = document.getElementById('saida');
+        let x = 7;
+        let y = 3;
+        saida.innerHTML = x % y;
+    }
+
+    function incremento() {
+        let saida = document.getElementById('saida');
+        let x = 7;
+        x++;
+        saida.innerHTML = x;
+    }
+
+    function decremento() {
+        let saida = document.getElementById('saida');
+        let x = 7;
+        x--;
+        saida.innerHTML = x;
+    }
+    </script>
+</head>
+<body>
+    <p id="saida">JS esperando evento</p>
+    <input type="button" value="+" id="botaoSoma">
+    <input type="button" value="-" id="botaoSub">
+    <input type="button" value="*" id="botaoMult">
+    <input type="button" value="/" id="botaoDiv">
+    <input type="button" value="^" id="botaoExp">
+    <input type="button" value="%" id="botaoResto">
+    <input type="button" value="++" id="botaoInc">
+    <input type="button" value="--" id="botaoDec">
+</body>
+</html>
