@@ -1,0 +1,132 @@
+
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora</title>
+  <style>
+    input[type="text"] {
+      width: 200px;
+      height: 30px;
+      font-size: 20px;
+      text-align: right;
+    }
+    input[type="button"] {
+      width: 45px;
+      height: 45px;
+      font-size: 20px;
+      margin: 2px;
+    }
+    p {
+      font-size: 16px;
+    }
+  </style>
+  <script>
+    //Conrado
+    let visorValor = "0";
+    let numeroAnterior = null;
+    let operacao = null;
+
+    window.onload = function () {
+      document.getElementById('visor').value = visorValor;
+
+     //buttons
+      for (let i = 0; i <= 9; i++) {
+        document.getElementById('b' + i).addEventListener('click', () => adicionar(i.toString()));
+      }
+
+      
+      document.getElementById('soma').addEventListener('click', () => definirOperacao("+"));
+      document.getElementById('subtracao').addEventListener('click', () => definirOperacao("-"));
+      document.getElementById('multiplicacao').addEventListener('click', () => definirOperacao("*"));
+      document.getElementById('divisao').addEventListener('click', () => definirOperacao("/"));
+      document.getElementById('ponto').addEventListener('click', () => adicionar("."));
+      document.getElementById('igual').addEventListener('click', calcular);
+      document.getElementById('limpar').addEventListener('click', limpar);
+
+      
+      let paragrafos = document.getElementsByTagName('p');
+      for (let i = 0; i < paragrafos.length; i++) {
+        paragrafos[i].addEventListener('mouseover', aumentaFonte);
+      }
+    };
+
+    function adicionar(valor) {
+      if (visorValor === "0" && valor !== ".") {
+        visorValor = valor;
+      } else {
+        if (valor === "." && visorValor.includes(".")) return;
+        visorValor += valor;
+      }
+      document.getElementById('visor').value = visorValor;
+    }
+
+    function definirOperacao(op) {
+      numeroAnterior = parseFloat(visorValor);
+      operacao = op;
+      visorValor = "0";
+    }
+
+    function calcular() {
+      let atual = parseFloat(visorValor);
+      let resultado = 0;
+      if (operacao === "+") resultado = numeroAnterior + atual;
+      else if (operacao === "-") resultado = numeroAnterior - atual;
+      else if (operacao === "*") resultado = numeroAnterior * atual;
+      else if (operacao === "/") resultado = atual !== 0 ? numeroAnterior / atual : "Erro";
+      visorValor = resultado.toString();
+      document.getElementById('visor').value = visorValor;
+      numeroAnterior = null;
+      operacao = null;
+    }
+
+    function limpar() {
+      visorValor = "0";
+      numeroAnterior = null;
+      operacao = null;
+      document.getElementById('visor').value = visorValor;
+    }
+
+    function aumentaFonte() {
+      let atual = parseInt(window.getComputedStyle(this).fontSize);
+      this.style.fontSize = (atual + 2) + "px";
+    }
+  </script>
+</head>
+<body>
+  <h2> Calculadora</h2>
+  
+  <input type="text" id="visor" readonly><br><br>
+
+ 
+  <input type="button" value="7" id="b7">
+  <input type="button" value="8" id="b8">
+  <input type="button" value="9" id="b9">
+  <input type="button" value="+" id="soma"><br>
+
+  <input type="button" value="4" id="b4">
+  <input type="button" value="5" id="b5">
+  <input type="button" value="6" id="b6">
+  <input type="button" value="-" id="subtracao"><br>
+
+  <input type="button" value="1" id="b1">
+  <input type="button" value="2" id="b2">
+  <input type="button" value="3" id="b3">
+  <input type="button" value="*" id="multiplicacao"><br>
+
+  <input type="button" value="0" id="b0">
+  <input type="button" value="." id="ponto"> 
+  <input type="button" value="=" id="igual">
+  <input type="button" value="/" id="divisao"><br><br> 
+
+  <input type="button" value="C" id="limpar">
+
+  <hr>
+ 
+  <p>Parágrafo 1: Passe o mouse para aumentar.</p>
+  <p>Parágrafo 2: Outro teste de aumento.</p>
+  <p>Parágrafo 3: Exemplo final.</p>
+</body>
+</html>
