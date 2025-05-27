@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CALCULO</title>
+    <script>
+                    window.onload = inicio;
+                    let saldo = 0;
+                    let juros = 0;
+
+                    function inicio () {
+                        document.getElementById("enviar").addEventListener("click",conta);
+                    }
+
+                        function conta () {
+            saldo = parseFloat(document.getElementById("saldo").value);
+            juros = parseFloat(document.getElementById("taxa").value);
+            let resp = saldo * (juros / 100);
+            document.getElementById("mes1").textContent = 'Mes 1: ' + 'R$ ' +(saldo + resp);
+            document.getElementById("mes2").textContent = 'Mes 2: ' + 'R$ ' +(saldo + (resp * 2));
+            document.getElementById("mes3").textContent = 'Mes 3: ' + 'R$ ' +(saldo + (resp * 3));
+        }
+
+
+
+        //Conrado
+
+    </script>
+</head>
+<body>
+    <p>SALDO:</p>
+    <input type="text" id="saldo">
+    <p>JUROS %:</p>
+    <input type="text" id="taxa"><br><br>
+    <input type="button" value="Calcular Rendimento" id="enviar"><br><br>
+    <h3>RESULTADOS:</h3>
+    <p id="mes1"></p>
+    <p id="mes2"></p>
+    <p id="mes3"></p>
+</body>
+</html>

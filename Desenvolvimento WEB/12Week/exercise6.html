@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cotação </title>
+    <script>
+        let atual = 0;
+        window.onload = inicio;
+
+        let objetoX = new XMLHttpRequest();
+
+        objetoX.open('GET', 'https://economia.awesomeapi.com.br/last/USD-BRL', true);
+    
+        objetoX.onload = function() {
+        if(objetoX.status == 200) {
+            let resposta = JSON.parse(objetoX.responseText);
+                atual = resposta.USDBRL.ask;
+            }
+        };
+        objetoX.send();
+
+
+
+        function inicio () {
+            document.getElementById('USD').addEventListener("click",request);
+            document.getElementById('converter').addEventListener("click",converter);
+        }
+
+        
+        
+        //Conrado
+        
+        
+        
+        function converter () {
+            let num = document.getElementById('real').value;
+            let resp = num / atual;
+            document.getElementById('texto').textContent = 'US$ ' + resp.toFixed(2);
+        }
+
+
+        function request () {
+            document.getElementById('texto').textContent = 'R$ ' + atual;
+        }
+
+    </script>
+</head>
+<body>
+    <label>R$: </label>
+    <input type="number" id="real"><br><br>
+    <input type="button" value="Dolar Hoje" id="USD">
+    <input type="button" value="Converter" id="converter"><br>
+    <p id="texto"></p>
+</body>
+</html>

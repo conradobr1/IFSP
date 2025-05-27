@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campo</title>
+    <script>
+
+        //Conrado
+                window.onload = inicio;
+
+                function inicio () {
+                    document.getElementById("limpar").addEventListener("click", apagar);
+                    document.getElementById("mostrar").addEventListener("click", mostrarTexto)
+                }
+
+        function apagar() {
+            document.getElementById("entrada").value = "";
+        }
+
+function mostrarTexto() {
+            let textoDigitado = document.getElementById("entrada").value;
+            document.getElementById("saida").textContent = "Você digitou: " + textoDigitado;
+        }
+    </script>
+</head>
+<body>
+    <input type="text" id="entrada"><br>
+    <input type="button" id="limpar" value="Limpar">
+    <input type="button" id="mostrar" value="Mostrar"><br>
+    <p id="saida"></p>
+</body>
+</html>

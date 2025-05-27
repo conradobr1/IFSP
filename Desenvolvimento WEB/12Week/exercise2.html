@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOTA</title>
+    <script>
+                     window.onload = inicio;
+        let nota = 0;
+
+        function inicio () {
+            document.getElementById("enviar").addEventListener("click", calculo);
+        }
+
+        function calculo () {
+            // Conrado
+            nota = parseFloat(document.getElementById("nota").value);
+
+                if (isNaN(nota)) {
+                document.getElementById("resposta").textContent = "Por favor, insira um número válido!";
+            } 
+            
+            
+            
+            
+            
+            
+            else if (nota >= 6) {
+                document.getElementById("resposta").textContent = "APROVADO";
+            }                    else {
+                document.getElementById("resposta").textContent = "REPROVADO";
+            }
+        
+        
+        }
+
+
+        
+    </script>
+</head>
+<body>
+    
+    <input type="text" id="nota"><br><br>
+    <input type="button" value="ENVIAR" id="enviar">
+    <p id="resposta"></p>
+</body>
+</html>

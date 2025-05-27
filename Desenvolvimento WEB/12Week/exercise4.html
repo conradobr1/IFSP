@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car</title>
+    <script>
+
+        //Conrado
+        window.onload = inicio;
+        let atual = 0
+
+        function inicio () {
+            document.getElementById("criar").addEventListener("click",criar);
+            document.getElementById("acelerar").addEventListener("click",acelerar);
+            document.getElementById("frear").addEventListener("click",frear);
+        }
+        function acelerar () {
+            atual += 3;
+            criar();
+        }
+        function frear () {
+            if(atual >= 2) {
+                atual -= 2;
+            }
+            else {
+                atual = 0;
+            }
+            criar()
+        }
+
+      
+      
+      
+       function criar () {
+            let carro = {
+            nome: document.getElementById("nome").value,
+            ano: document.getElementById("ano").value,
+            cor: document.getElementById("cor").value,
+            velocidade: atual,
+            }
+            document.getElementById("modelo").textContent = 
+            'Modelo: ' + carro.nome + ', ' + carro.ano + ', ' + carro.cor + ', ' + 'velocidade: ' + carro.velocidade
+        }
+        
+    </script>
+</head>
+<body>
+    <label>Nome: </label>
+    <input type="text" id="nome"><br><br>
+    <label>Ano: </label>
+    <input type="number" id="ano"><br><br>
+    <label>Cor: </label>
+    <input type="text" id="cor"><br><br>
+    <input type="button" value="Criar" id="criar">
+    <p id="modelo"></p>
+    <input type="button" value="acelerar" id="acelerar">
+    <input type="button" value="frear" id="frear">
+</body>
+</html>

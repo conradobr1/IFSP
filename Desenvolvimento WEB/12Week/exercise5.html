@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversao</title>
+    <script>
+        //Conrado
+        window.onload = inicio;
+
+        function inicio () {
+            document.getElementById("json").addEventListener("click", conversao);
+        }
+        function conversao () {
+            let campo = document.getElementById("campoTexto");
+            let digitado = campo.value;
+
+            let objeto = JSON.parse(digitado);
+            
+            let pnome = document.getElementById("nome");
+            let pidade = document.getElementById("idade");
+
+            pnome.textContent = objeto.nome;
+            pidade.textContent = objeto.idade;
+
+        }
+    </script>
+</head>
+<body>
+    <input type="text"  id="campoTexto">
+    <input type="button" value="Enviar" id="json">
+    <p id="nome"></p>
+    <p id="idade"></p>
+</body>
+</html>
