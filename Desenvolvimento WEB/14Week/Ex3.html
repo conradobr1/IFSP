@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS</title>
+    <script>
+        function inicio() {
+      let botaoM = document.getElementById('btnMostrar');
+            botaoM.addEventListener('click', mostra);
+
+            // ajuste para o botão Limpar:
+             let botaoL = document.getElementById('btnLimpar');
+            botaoL.addEventListener('click', limpa);
+        }
+
+        function limpa() {
+            let elementoP = document.getElementById('para');
+            elementoP.textContent = '';
+        }
+
+        function mostra() {
+            let elementoP = document.getElementById('para');
+            elementoP.textContent = 'Hello, world!';
+        }
+        //Conrado
+    </script>
+</head>
+<body>
+    <p id="para">Nada aqui</p>
+ <input type="button" value="Mostrar" id="btnMostrar">
+    <input type="button" value="Limpar" id="btnLimpar">
+    <script>
+        inicio();
+    </script>
+</body>
+</html>

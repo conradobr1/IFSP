@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS</title>
+    <style>
+        .dark {
+            color: white;
+            background-color: black;
+        }
+        table, td {
+            border: 1px solid black;
+    border-collapse: collapse;
+            padding: 8px;
+            text-align: center;
+            width: 30px;
+            height: 30px;
+        }
+        table {
+            margin-bottom: 10px;
+        }
+    </style>
+    <script>
+                window.onload = inicio;
+
+                function inicio() {
+                    let botaoGera = document.getElementById('btnGera');
+                    botaoGera.addEventListener('click', gera);
+
+                    let botaoMarca = document.getElementById('btnMarca');
+                    botaoMarca.addEventListener('click', marcaDia);
+                }
+
+        function gera() {
+            let tabela = document.getElementsByTagName('table')[0];
+         let elementos = '';
+
+            elementos += '<tr>';
+            for (let i = 1; i <= 31; i++) {
+                // Quebra linha a cada 7 dias
+                if ((i - 1) % 7 === 0 && i !== 1) {
+                    elementos += '</tr><tr>';
+                }
+                 // Cada <td> recebe id para facilitar marcação
+              elementos += '<td id="dia-' + i + '">' + i + '</td>';
+            }
+            elementos += '</tr>';
+
+            tabela.innerHTML = elementos;
+        }
+
+        function marcaDia() {
+            let dia = parseInt(document.getElementById('numero').value);
+            if (isNaN(dia) || dia < 1 || dia > 31) {
+                alert('Digite um número entre 1 e 31');
+                return;
+            }
+
+              // Remove todas as marcações .dark antes
+        for (let i = 1; i <= 31; i++) {
+                let td = document.getElementById('dia-' + i);
+                if (td) {
+                    td.classList.remove('dark');
+                }
+            }
+
+            // Marca o dia escolhido
+            let tdEscolhido = document.getElementById('dia-' + dia);
+            if (tdEscolhido) {
+                tdEscolhido.classList.add('dark');
+            }
+        }
+
+        //Conrado
+    </script>
+</head>
+<body>
+    <table></table>
+    <input type="button" value="Gera" id="btnGera" /><br><br>
+
+    <label for="numero">Dia:</label>
+    <input type="text" id="numero" value="0" />
+    <input type="button" value="Marca" id="btnMarca" />
+</body>
+</html>

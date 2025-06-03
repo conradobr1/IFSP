@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS</title>
+    <script>
+        window.onload = inicio;
+
+        let ligada = true;
+
+        let imgLigada = 'https://i.ibb.co/d4mZ5k0Y/Captura-de-Tela-2025-06-02-s-16-08-21.png';
+        let imgDesligada = 'https://i.ibb.co/hRHPxcnP/Captura-de-Tela-2025-06-02-s-16-08-01.png';
+
+        function inicio() {
+            let botao = document.getElementById('botao');
+            let imagem = document.getElementById('imagem');
+
+            // Inicializa a imagem ligada e texto do botão:
+            imagem.src = imgLigada;
+            botao.value = 'Desliga';
+
+            botao.addEventListener('click', muda);
+        }
+
+        function muda() {
+            let imagem = document.getElementById('imagem');
+            let botao = document.getElementById('botao');
+
+            if (ligada == true) {
+                imagem.src = imgDesligada;
+                botao.value = 'Liga';
+                ligada = false;
+            } else {
+                imagem.src = imgLigada;
+                botao.value = 'Desliga';
+                ligada = true;
+            }
+        }
+
+        //Conrado
+    </script>
+</head>
+<body>
+    <img src="" alt="Lâmpada" id="imagem" height="80" /><br />
+    <input type="button" value="Ligar" id="botao" />
+</body>
+</html>
