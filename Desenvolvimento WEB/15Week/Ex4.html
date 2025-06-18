@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS - Exercício 4.1 Resolvido</title>
+    <style>
+        /* Estilos básicos para a tabela */
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+    <script>
+        window.onload = inicio;
+
+        let idContador = 1;
+
+        function inicio() {
+            // Adiciona o evento para o botão de adicionar tarefa
+            document.getElementById('btnAdiciona').addEventListener('click', adiciona);
+
+            // Adiciona o evento ao container das atividades (Event Delegation)
+            document.getElementById('atividades').addEventListener('click', verificarTarefa);
+        }
+
+        function adiciona() {
+            let campoNome = document.getElementById('nome');
+            let nomeAtividade = campoNome.value;
+            
+            if (nomeAtividade.trim() === '') {
+                alert('Por favor, digite o nome da tarefa.');
+                return;
+            }
+
+            let atividades = document.getElementById('atividades');
+            let novaTarefaHTML = `
+                <div>
+                    <input type="checkbox" id="tarefa-${idContador}">
+                    <label for="tarefa-${idContador}">${nomeAtividade}</label>
+                </div>
+            `;
+            atividades.innerHTML += novaTarefaHTML;
+            idContador++;
+
+            campoNome.value = '';
+            campoNome.focus();
+        }
+
+        function verificarTarefa(event) {
+            // Verifica se o elemento clicado foi um checkbox e se foi marcado
+            if (event.target.type === 'checkbox' && event.target.checked) {
+                const checkbox = event.target;
+                const tarefaDiv = checkbox.parentElement;
+                const label = tarefaDiv.querySelector('label');
+                const nomeTarefa = label.textContent;
+
+                // Cria o objeto de data no momento do clique
+                const dataConclusao = new Date();
+
+                // Adiciona a tarefa na tabela de concluídas
+                adicionarNaTabela(nomeTarefa, dataConclusao);
+
+                // Remove a tarefa da lista de atividades
+                tarefaDiv.remove();
+            }
+        }
+
+        function adicionarNaTabela(nome, data) {
+            const tabelaCorpo = document.getElementById('corpo-tabela');
+            const dataFormatada = formatarData(data);
+
+            const novaLinha = `
+                <tr>
+                    <td>${nome}</td>
+                    <td>${dataFormatada}</td>
+                </tr>
+            `;
+            tabelaCorpo.innerHTML += novaLinha;
+        }
+
+        function formatarData(data) {
+            const dia = String(data.getDate()).padStart(2, '0');
+            const mes = String(data.getMonth() + 1).padStart(2, '0'); // Mês é 0-indexado
+            const ano = data.getFullYear();
+            const horas = String(data.getHours()).padStart(2, '0');
+            const minutos = String(data.getMinutes()).padStart(2, '0');
+            
+            return `${dia}/${mes}/${ano} ${horas}:${minutos}`;
+        }
+    </script>
+</head>
+<body>
+    <label for="nome">Atividade:</label>
+    <input type="text" id="nome">
+    <input type="button" id="btnAdiciona" value="Adicionar"><br>
+
+    <h3>A Fazer</h3>
+    <div id="atividades"></div>
+
+    <h3>Tarefas Encerradas</h3>
+    <table id="tabela-concluidas">
+        <thead>
+            <tr>
+                <th>Nome da Tarefa</th>
+                <th>Data de Encerramento</th>
+            </tr>
+        </thead>
+        <tbody id="corpo-tabela">
+            </tbody>
+    </table>
+
+</body>
+</html>

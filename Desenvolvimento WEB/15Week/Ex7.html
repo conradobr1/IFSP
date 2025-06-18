@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS - Exercício 7.1 Resolvido</title>
+    <style>
+        body { font-family: sans-serif; }
+        #atividades div { margin-bottom: 8px; }
+        #atividades label { padding: 4px; border-radius: 4px; margin-left: 5px; }
+        table { width: 100%; margin-top: 20px; border-collapse: collapse; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+    <script>
+        window.onload = inicio;
+
+        let idContador = 1;
+
+        function inicio() {
+            document.getElementById('btnAdiciona').addEventListener('click', adiciona);
+            document.getElementById('atividades').addEventListener('change', atualizarEstadoTarefa);
+        }
+
+        function adiciona() {
+            const campoNome = document.getElementById('nome');
+            const nomeAtividade = campoNome.value.trim();
+            
+            if (nomeAtividade === '') {
+                alert('Por favor, digite o nome da tarefa.');
+                return;
+            }
+
+            const divAtividades = document.getElementById('atividades');
+            
+            const tarefaDiv = document.createElement('div');
+            
+            const select = document.createElement('select');
+            select.id = `tarefa-${idContador}`;
+
+            const options = [
+                { value: 'inicio', text: 'Aguardando' },
+                { value: 'atribuida', text: 'Em andamento' },
+                { value: 'parada', text: 'Pausada' },
+                { value: 'rejeitada', text: 'Rejeitada' },
+                { value: 'fim', text: 'Concluída' }
+            ];
+
+            options.forEach(optData => {
+                const option = document.createElement('option');
+                option.value = optData.value;
+                option.textContent = optData.text;
+                select.appendChild(option);
+            });
+            
+            const label = document.createElement('label');
+            label.htmlFor = `tarefa-${idContador}`;
+            label.textContent = nomeAtividade;
+
+            tarefaDiv.appendChild(select);
+            tarefaDiv.appendChild(label);
+            divAtividades.appendChild(tarefaDiv);
+
+            idContador++;
+            campoNome.value = '';
+            campoNome.focus();
+        }
+
+        function atualizarEstadoTarefa(event) {
+            const select = event.target;
+            if (select.tagName !== 'SELECT') return;
+
+            const novoEstado = select.value;
+            const tarefaDiv = select.parentElement;
+            const label = tarefaDiv.querySelector('label');
+
+            label.style.backgroundColor = '';
+            label.style.color = 'black';
+
+            switch (novoEstado) {
+                case 'atribuida':
+                    label.style.backgroundColor = 'lightgreen';
+                    break;
+                case 'parada':
+                    label.style.backgroundColor = 'yellow';
+                    break;
+                case 'rejeitada':
+                    label.style.backgroundColor = 'lightcoral';
+                    label.style.color = 'white';
+                    break;
+                case 'fim':
+                    const nomeTarefa = label.textContent;
+                    const dataConclusao = new Date();
+                    adicionarNaTabela(nomeTarefa, dataConclusao);
+                    tarefaDiv.remove();
+                    break;
+            }
+        }
+
+        function adicionarNaTabela(nome, data) {
+            const tabelaCorpo = document.getElementById('corpo-tabela');
+            const dataFormatada = formatarData(data);
+            const novaLinha = `
+                <tr>
+                    <td>${nome}</td>
+                    <td>${dataFormatada}</td>
+                </tr>
+            `;
+            tabelaCorpo.innerHTML += novaLinha;
+        }
+
+        function formatarData(data) {
+            const dia = String(data.getDate()).padStart(2, '0');
+            const mes = String(data.getMonth() + 1).padStart(2, '0');
+            const ano = data.getFullYear();
+            const horas = String(data.getHours()).padStart(2, '0');
+            const minutos = String(data.getMinutes()).padStart(2, '0');
+            return `${dia}/${mes}/${ano} ${horas}:${minutos}`;
+        }
+    </script>
+</head>
+<body>
+    <h2>Nova Tarefa</h2>
+    <label for="nome">Atividade:</label>
+    <input type="text" id="nome">
+    <input type="button" id="btnAdiciona" value="Adicionar"><br>
+
+    <h3>A Fazer</h3>
+    <div id="atividades"></div>
+
+    <h3>Tarefas Encerradas</h3>
+    <table id="tabela-concluidas">
+        <thead>
+            <tr>
+                <th>Nome da Tarefa</th>
+                <th>Data de Encerramento</th>
+            </tr>
+        </thead>
+        <tbody id="corpo-tabela">
+        </tbody>
+    </table>
+</body>
+</html>
