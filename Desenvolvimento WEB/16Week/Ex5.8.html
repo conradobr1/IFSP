@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cotação do Dólar Atual</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; padding-top: 40px; }
+        #cotacao-container { border: 2px solid #0044cc; padding: 20px; display: inline-block; border-radius: 10px; }
+        #cotacao { font-size: 2em; font-weight: bold; }
+        #data-hora { margin-top: 15px; color: #555; }
+    </style>
+</head>
+<body>
+    <h1>Cotação do Dólar (PTAX) Agora</h1>
+    
+    <div id="cotacao-container">
+        <div id="cotacao">Buscando cotação...</div>
+        <div id="data-hora"></div>
+    </div>
+
+    <script>
+        window.onload = function() {
+            buscarCotacaoAtual();
+            setInterval(buscarCotacaoAtual, 5000);
+        };
+
+        function formatarDataParaAPI(data) {
+            const mes = String(data.getMonth() + 1).padStart(2, '0');
+            const dia = String(data.getDate()).padStart(2, '0');
+            const ano = data.getFullYear();
+            return `${mes}-${dia}-${ano}`;
+        }
+        
+        function buscarCotacaoAtual() {
+            const divCotacao = document.getElementById('cotacao');
+            const divDataHora = document.getElementById('data-hora');
+            
+            const hoje = new Date();
+            const dataFormatada = formatarDataParaAPI(hoje);
+            const url = `https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/CotacaoDolarDia(dataCotacao=@dataCotacao)?@dataCotacao='${dataFormatada}'&$top=100&$format=json`;
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.value && data.value.length > 0) {
+                        const cotacao = data.value[0];
+                        divCotacao.innerHTML = `Venda: R$ ${cotacao.cotacaoVenda.toFixed(4)}`;
+                    } else {
+                        divCotacao.textContent = 'Mercado fechado ou sem cotação ainda.';
+                    }
+                    divDataHora.textContent = `Última atualização: ${hoje.toLocaleTimeString()}`;
+                })
+                .catch(error => {
+                    divCotacao.textContent = 'Erro ao buscar dados.';
+                    console.error("Erro na API:", error);
+                });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 3.1 - JSON</title>
+</head>
+<body>
+
+    <h1>Exercício 3.1 - JSON.stringify e JSON.parse</h1>
+    <p>Abra o console do desenvolvedor (pressione F12) para ver a saída do código.</p>
+
+    <script>
+        let numero = 2;
+
+        // transforme numero em um valor JSON:
+        let numeroJSON = JSON.stringify(numero);
+
+        console.log(numeroJSON);
+        console.log(typeof(numeroJSON));
+
+        // transforme numeroJSON de volta em valor:
+        let retorno = JSON.parse(numeroJSON);
+
+        console.log(typeof(retorno));  
+
+        let resultado = retorno * 3;
+        console.log(resultado);
+    </script>
+
+</body>
+</html>

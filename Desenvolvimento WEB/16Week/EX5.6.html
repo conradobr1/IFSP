@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cotação do Dólar por Data</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        input[type="date"], button { font-size: 1em; padding: 8px; }
+        #resultado { margin-top: 20px; font-size: 1.2em; }
+    </style>
+</head>
+<body>
+    <h1>Consultar Cotação do Dólar</h1>
+    <p>Selecione uma data para ver a cotação PTAX do Banco Central.</p>
+
+    <input type="date" id="data-cotacao">
+    <button id="btn-buscar">Buscar Cotação</button>
+
+    <div id="resultado"></div>
+
+    <script>
+        window.onload = function() {
+            document.getElementById('btn-buscar').addEventListener('click', buscarCotacao);
+        };
+
+        function buscarCotacao() {
+            const inputData = document.getElementById('data-cotacao');
+            const divResultado = document.getElementById('resultado');
+            const dataSelecionada = inputData.value;
+
+            if (!dataSelecionada) {
+                divResultado.textContent = 'Por favor, selecione uma data.';
+                return;
+            }
+
+            divResultado.textContent = 'Buscando...';
+
+            const [ano, mes, dia] = dataSelecionada.split('-');
+            const dataFormatada = `${mes}-${dia}-${ano}`;
+            
+            const url = `https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/CotacaoDolarDia(dataCotacao=@dataCotacao)?@dataCotacao='${dataFormatada}'&$top=100&$format=json`;
+
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Erro na rede ou na resposta da API.');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.value && data.value.length > 0) {
+                        const cotacao = data.value[0];
+                        divResultado.innerHTML = `
+                            <strong>Data:</strong> ${dia}/${mes}/${ano}<br>
+                            <strong>Cotação de Compra:</strong> R$ ${cotacao.cotacaoCompra.toFixed(4)}<br>
+                            <strong>Cotação de Venda:</strong> R$ ${cotacao.cotacaoVenda.toFixed(4)}
+                        `;
+                    } else {
+                        divResultado.textContent = `Nenhuma cotação encontrada para ${dia}/${mes}/${ano}. (Pode ser um fim de semana ou feriado).`;
+                    }
+                })
+                .catch(error => {
+                    divResultado.textContent = `Erro ao buscar cotação: ${error.message}`;
+                });
+        }
+    </script>
+</body>
+</html>
