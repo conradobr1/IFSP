@@ -21,6 +21,6 @@ Desenvolvimento WEB <br>
 
 
 Desenvolvimento WEB 2 <br>
-01 [WEEK](https://github.com/conradobr1/IFSP/tree/main/Desenvolvimento%20WEB/1Semana) <BR>
+01 [WEEK](https://github.com/conradobr1/IFSP/tree/main/DesenvolvimentoWeb2/1Week) <BR>
 
 
