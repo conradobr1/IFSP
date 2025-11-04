@@ -10,3 +10,4 @@ foreach ($stmt as $a) {
     echo "</div>";
 }
 ?>
+<?php include 'footer.php';  ?>

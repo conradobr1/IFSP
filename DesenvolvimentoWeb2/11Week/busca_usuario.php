@@ -15,7 +15,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header("Location: submissoes.php");
         exit;
     } else {
-        echo "<script>alert('Login ou senha incorretos');history.back();</script>";
+        // Define uma mensagem de erro na sessão e redireciona de volta
+        $_SESSION['login_error'] = "Login ou senha incorretos";
+        header("Location: entrada.php");
+        exit;
     }
+} else {
+    // Se não for POST, apenas redireciona para a página de login
+    header("Location: entrada.php");
+    exit;
 }
 ?>

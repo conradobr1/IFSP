@@ -24,3 +24,4 @@ if ($arquivo['error'] == 0) {
     echo "Erro ao enviar arquivo.";
 }
 ?>
+<?php include 'footer.php';  ?>

@@ -22,3 +22,4 @@ foreach($part as $p){
     echo "<p><b>{$p['usuario']}</b>: ".nl2br($p['comentario'])."</p>";
 }
 ?>
+<?php include 'footer.php';  ?>

@@ -1,22 +1,65 @@
-<?php include 'config.php'; include 'header.php';
-$id = $_GET['id'];
-$sql = $pdo->prepare("SELECT * FROM submissoes WHERE id = ?");
-$sql->execute([$id]);
-$s = $sql->fetch(PDO::FETCH_ASSOC);
-?>
-<h2>Avaliar Submissão</h2>
-<p><b>Título:</b> <?= $s['titulo'] ?></p>
-<p><b>Observações:</b> <?= nl2br($s['observacoes']) ?></p>
-<p><a href="uploads/<?= $s['arquivo'] ?>" target="_blank">📄 Abrir arquivo</a></p>
+<?php
+require 'config.php';
+require_login();
+include 'header.php'; // <-- Agora vai incluir o NOVO header corrigido
 
-<form action="salva_avaliacao.php" method="POST">
-    <input type="hidden" name="submissao_id" value="<?= $s['id'] ?>">
-    <label>Aprovar?</label>
-    <select name="aprovado">
-        <option value="1">Sim</option>
-        <option value="0">Não</option>
-    </select><br><br>
-    <label>Comentário:</label><br>
-    <textarea name="comentario" rows="4" cols="50"></textarea><br><br>
-    <button type="submit">Salvar Avaliação</button>
+$id_sub = $_GET['id'] ?? 0;
+$id_usuario = $_SESSION['usuario_id'];
+
+// Buscar submissão
+$stmt = $pdo->prepare("
+    SELECT s.*, u.usuario 
+    FROM submissoes s 
+    JOIN usuarios u ON s.usuario_id = u.id
+    WHERE s.id = ?
+");
+$stmt->execute([$id_sub]);
+$sub = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if (!$sub) {
+    echo "<div class='alert alert-danger'>Submissão não encontrada.</div>";
+    include 'footer.php';
+    exit;
+}
+
+// Impede o próprio autor de avaliar
+if ($sub['usuario_id'] == $id_usuario) {
+    echo "<div class='alert alert-warning'>Você não pode avaliar seu próprio texto.</div>";
+    include 'footer.php';
+    exit;
+}
+?>
+
+<h3 class="mb-4">Avaliar Submissão: <?= htmlspecialchars($sub['titulo']) ?></h3>
+
+<div class="card mb-3">
+  <div class="card-body">
+    <p><strong>Autor:</strong> <?= htmlspecialchars($sub['usuario']) ?></p>
+    <p><strong>Observações:</strong> <?= nl2br(htmlspecialchars($sub['observacoes'])) ?></p>
+    <a href="uploads/<?= htmlspecialchars($sub['arquivo']) ?>" target="_blank" class="btn btn-outline-secondary mb-3">Ver Arquivo</a>
+  </div>
+</div>
+
+<form action="salva_avaliacao.php" method="post">
+  <input type="hidden" name="submissao_id" value="<?= $sub['id'] ?>">
+  <div class="mb-3">
+    <label class="form-label">Comentário</label>
+    <textarea name="comentario" class="form-control" rows="4" required></textarea>
+  </div>
+  
+  <div class="mb-3">
+    <label class="form-label d-block">Aprovação</label>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="aprovado" id="aprovar" value="1" required>
+        <label class="form-check-label" for="aprovar">Aprovar</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="aprovado" id="reprovar" value="0">
+        <label class="form-check-label" for="reprovar">Reprovar</label>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-success">Salvar Avaliação</button>
 </form>
+
+<?php include 'footer.php'; ?>

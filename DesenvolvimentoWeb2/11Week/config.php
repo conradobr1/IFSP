@@ -1,15 +1,19 @@
 <?php
-// config.php
-$host = "localhost";
-$usuario = "root";       // altere se necessário
-$senha = "";             // altere se necessário
-$banco = "clube_escrita";
-
-try {
-    $pdo = new PDO("mysql:host=$host;dbname=$banco;charset=utf8", $usuario, $senha);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    die("Erro ao conectar ao banco de dados: " . $e->getMessage());
-}
 session_start();
+
+$host = "localhost";
+$user = "root";
+$pass = "";
+$db = "clube_escrita";
+
+$pdo = new PDO("mysql:host=$host;dbname=$db;charset=utf8", $user, $pass);
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+// Redirecionar se não estiver logado
+function require_login() {
+    if (!isset($_SESSION['usuario_id'])) {
+        header("Location: entrada.php");
+        exit;
+    }
+}
 ?>

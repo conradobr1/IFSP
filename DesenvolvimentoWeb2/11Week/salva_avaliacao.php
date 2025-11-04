@@ -1,12 +1,18 @@
 <?php
-include 'config.php';
+require 'config.php';
+require_login();
 
-$id = $_POST['submissao_id'];
-$aprovado = $_POST['aprovado'];
+$id_usuario = $_SESSION['usuario_id'];
+$id_sub = $_POST['submissao_id'];
 $comentario = $_POST['comentario'];
+$aprovado = $_POST['aprovado'];
 
-$stmt = $pdo->prepare("INSERT INTO avaliacoes (submissao_id, usuario_id, aprovado, comentario) VALUES (?, ?, ?, ?)");
-$stmt->execute([$id, $_SESSION['usuario_id'], $aprovado, $comentario]);
+$stmt = $pdo->prepare("
+    INSERT INTO avaliacoes (submissao_id, usuario_id, aprovado, comentario, data_avaliacao)
+    VALUES (?, ?, ?, ?, NOW())
+");
+$stmt->execute([$id_sub, $id_usuario, $aprovado, $comentario]);
 
-echo "<script>alert('Avaliação registrada!');window.location='submissoes.php';</script>";
+header("Location: submissoes.php");
+exit;
 ?>

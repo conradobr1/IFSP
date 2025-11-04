@@ -1,30 +1,51 @@
-<?php include 'config.php'; ?>
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-<meta charset="UTF-8">
-<title>Login - Clube de Escrita</title>
-<style>
-body{font-family:Arial;background:#f0f0f0;margin:40px;}
-form{background:white;padding:25px;max-width:400px;margin:auto;border-radius:10px;box-shadow:0 0 8px #999;}
-input,button{width:100%;padding:10px;margin:6px 0;border:1px solid #ccc;border-radius:5px;}
-button{background:#28a745;color:white;font-weight:bold;border:none;cursor:pointer;}
-button:hover{background:#218838;}
-</style>
-</head>
-<body>
-<h2 style="text-align:center;">Entrar</h2>
-<form action="busca_usuario.php" method="POST">
-    <label>Usuário ou E-mail:</label>
-    <input type="text" name="login" required>
+<?php 
+include 'config.php'; 
 
-    <label>Senha:</label>
-    <input type="password" name="senha" required>
+// Se já estiver logado, redireciona para a home
+if (isset($_SESSION['usuario_id'])) {
+    header("Location: submissoes.php");
+    exit;
+}
 
-    <button type="submit">Entrar</button>
-</form>
-<p style="text-align:center;margin-top:10px;">
-    Não tem conta? <a href="cadastro_usuario.php">Cadastre-se</a>
-</p>
-</body>
-</html>
+include 'header.php'; 
+?>
+
+<div class="row justify-content-center">
+    <div class="col-lg-5 col-md-7">
+        <div class="card shadow-sm">
+            <div class="card-body p-4">
+                <h2 class="text-center mb-4">Entrar</h2>
+
+                <?php
+                // Exibe a mensagem de erro, se houver
+                if (isset($_SESSION['login_error'])) {
+                    echo '<div class="alert alert-danger">' . $_SESSION['login_error'] . '</div>';
+                    unset($_SESSION['login_error']); // Limpa o erro
+                }
+                ?>
+
+                <form action="busca_usuario.php" method="POST">
+                    <div class="mb-3">
+                        <label for="login" class="form-label">Usuário ou E-mail:</label>
+                        <input type="text" id="login" name="login" class="form-control" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="senha" class="form-label">Senha:</label>
+                        <input type="password" id="senha" name="senha" class="form-control" required>
+                    </div>
+
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-success btn-lg">Entrar</button>
+                    </div>
+                </form>
+
+                <p class="text-center mt-3">
+                    Não tem conta? <a href="cadastro_usuario.php">Cadastre-se</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php include 'footer.php'; ?>
