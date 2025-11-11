@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Navegar entre Posts</title>
+    <script>
+	let atual = 1;
+
+	window.onload = () => {
+	    document.getElementById('buscar').addEventListener('click', busca_post);
+	    document.getElementById('anterior').addEventListener('click', anterior);
+	    document.getElementById('proximo').addEventListener('click', proximo);
+	}
+
+	function busca_post() {
+	    const numero = document.getElementById('numero').value || atual;
+	    const xhttp = new XMLHttpRequest();
+	    xhttp.onload = function () {
+		let objeto = JSON.parse(this.responseText);
+		document.getElementById('resposta').innerHTML = objeto.title;
+	    }
+	    xhttp.open("GET", `https://jsonplaceholder.typicode.com/posts/${numero}`);
+	    xhttp.send();
+	    atual = parseInt(numero);
+	}
+
+	function anterior() {
+	    if (atual > 1) {
+		atual--;
+		document.getElementById('numero').value = atual;
+		busca_post();
+	    }
+	}
+
+	function proximo() {
+	    if (atual < 100) {
+		atual++;
+		document.getElementById('numero').value = atual;
+		busca_post();
+	    }
+	}
+    </script>
+</head>
+
+<body>
+    <h3>Posts</h3>
+    <p id='resposta'></p>
+    <form>
+	<label>Número:</label>
+	<input type="number" id="numero" min="1" max="100" value="1">
+	<input type="button" value="Buscar" id='buscar'>
+	<input type="button" value="Anterior" id='anterior'>
+	<input type="button" value="Próximo" id='proximo'>
+    </form>
+</body>
+
+</html>

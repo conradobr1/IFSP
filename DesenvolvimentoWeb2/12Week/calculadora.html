@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora API</title>
+    <style>
+        body { font-family: Arial; text-align: center; background: #f0f0f0; }
+        #calc { display: inline-block; padding: 20px; background: #222; border-radius: 10px; color: white; margin-top: 40px; }
+        input[type=button] {
+            width: 50px; height: 50px; margin: 5px; font-size: 20px;
+            border: none; border-radius: 8px; background: #444; color: white;
+        }
+        input[type=button]:hover { background: #666; cursor: pointer; }
+        #display {
+            width: 230px; height: 40px; margin-bottom: 10px;
+            text-align: right; font-size: 22px; border: none;
+            border-radius: 5px; padding: 5px; background: #eee; color: black;
+        }
+    </style>
+</head>
+
+<body>
+<div id="calc">
+    <input type="text" id="display" readonly><br>
+
+    <input type="button" value="MR" onclick="mr()">
+    <input type="button" value="M+" onclick="mplus()">
+    <input type="button" value="M-" onclick="mminus()">
+    <input type="button" value="MC" onclick="mc()"><br>
+
+    <input type="button" value="7" onclick="addNum('7')">
+    <input type="button" value="8" onclick="addNum('8')">
+    <input type="button" value="9" onclick="addNum('9')">
+    <input type="button" value="/" onclick="operador('/')"><br>
+
+    <input type="button" value="4" onclick="addNum('4')">
+    <input type="button" value="5" onclick="addNum('5')">
+    <input type="button" value="6" onclick="addNum('6')">
+    <input type="button" value="*" onclick="operador('*')"><br>
+
+    <input type="button" value="1" onclick="addNum('1')">
+    <input type="button" value="2" onclick="addNum('2')">
+    <input type="button" value="3" onclick="addNum('3')">
+    <input type="button" value="-" onclick="operador('-')"><br>
+
+    <input type="button" value="0" onclick="addNum('0')">
+    <input type="button" value="." onclick="ponto()">
+    <input type="button" value="=" onclick="calcular()">
+    <input type="button" value="+" onclick="operador('+')"><br>
+
+    <input type="button" value="√" onclick="raiz()">
+    <input type="button" value="±" onclick="trocaSinal()">
+    <input type="button" value="AC" onclick="ac()">
+</div>
+
+<script>
+let num1 = null;
+let operacao = null;
+let display = document.getElementById('display');
+let num_calc = 1;
+
+function addNum(n) { display.value += n; }
+
+function operador(op) {
+    num1 = parseFloat(display.value);
+    operacao = op;
+    display.value = '';
+}
+
+function ponto() {
+    if (!display.value.includes('.')) display.value += '.';
+}
+
+function trocaSinal() {
+    if (display.value) display.value = parseFloat(display.value) * -1;
+}
+
+function limpa() {
+    display.value = '';
+    num1 = null;
+    operacao = null;
+}
+
+function ac() {
+    limpa();
+    fetch(`api/mc.php?num_calc=${num_calc}`);
+}
+
+function calcular() {
+    let num2 = parseFloat(display.value);
+    if (!operacao) return;
+    fetch(`api/${opNome(operacao)}.php?x=${num1}&y=${num2}`)
+        .then(r => r.json())
+        .then(d => {
+            if (d.erro) erro(d.erro);
+            else display.value = d.resultado;
+        });
+}
+
+function opNome(op) {
+    switch (op) {
+        case '+': return 'soma';
+        case '-': return 'subtrai';
+        case '*': return 'multiplica';
+        case '/': return 'divide';
+    }
+}
+
+function raiz() {
+    let x = parseFloat(display.value);
+    fetch(`api/raiz.php?x=${x}`)
+        .then(r => r.json())
+        .then(d => {
+            if (d.erro) erro(d.erro);
+            else display.value = d.resultado;
+        });
+}
+
+function mr() {
+    fetch(`api/mr.php?num_calc=${num_calc}`)
+        .then(r => r.json())
+        .then(d => display.value = d.memoria ?? 0);
+}
+
+function mplus() {
+    let valor = parseFloat(display.value) || 0;
+    fetch(`api/mplus.php?num_calc=${num_calc}&valor=${valor}`)
+        .then(() => alert('Valor somado à memória'));
+}
+
+function mminus() {
+    let valor = parseFloat(display.value) || 0;
+    fetch(`api/mminus.php?num_calc=${num_calc}&valor=${valor}`)
+        .then(() => alert('Valor subtraído da memória'));
+}
+
+function mc() {
+    fetch(`api/mc.php?num_calc=${num_calc}`)
+        .then(() => alert('Memória limpa'));
+}
+
+function erro(msg) {
+    display.value = msg;
+    setTimeout(() => display.value = '', 2000);
+}
+</script>
+</body>
+</html>
