@@ -2,7 +2,7 @@ void main() {
   String nome= 'Camiseta ADS';
   
  int quantidade =3;
-double preco= 49.90;
+ double preco= 49.90;
  bool disponivel =true;
   
 
