@@ -1,10 +1,31 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MaterialApp(
+  runApp(
+    MaterialApp(
       home: Scaffold(
-    body: Center(child: Text('Hello World')),
-    //backgroundColor: Color.fromARGB(122, 0, 255, 221),
-    backgroundColor: Colors.blue,
-  )));
+        body: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment(0.1, 1),
+              colors: <Color>[
+                Colors.lightBlue,
+                Colors.lightGreen,
+              ],
+            ),
+          ),
+          child: const Center(
+            child: Text(
+              'Hello IFSP',
+              style: TextStyle(
+                fontSize: 30,
+                color: Colors.white,
+              ),
+            ),
+          ),
+        ),
+      ),
+    ),
+  );
 }
