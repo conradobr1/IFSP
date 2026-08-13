@@ -39,4 +39,5 @@ Desenvolvimento WEB 2 <br>
 DESENVOLVIMENTO PARA DISPOSITIVOS MÓVEIS <br>
 
 01 [WEEK](https://github.com/conradobr1/IFSP/tree/main/MDD/1Week) <BR>
+02 [WEEK](https://github.com/conradobr1/IFSP/tree/main/MDD/2Week) <BR>
 
