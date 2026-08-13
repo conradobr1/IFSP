@@ -37,7 +37,6 @@ class _JogoAdivinhacaoPageState extends State<JogoAdivinhacaoPage> {
   void _verificarPalpite() {
     final int? palpite = int.tryParse(_controller.text);
 
-    // Valida se a entrada do usuário está entre 1 e 5
     if (palpite == null || palpite < 1 || palpite > 5) {
       setState(() {
         _mensagem = 'Por favor, digite um número válido de 1 a 5!';
@@ -46,8 +45,6 @@ class _JogoAdivinhacaoPageState extends State<JogoAdivinhacaoPage> {
       return;
     }
 
-    // Random().nextInt(5) gera um número de 0 a 4.
-    // Somando + 1, o resultado fica entre 1 e 5.
     final int numeroSorteado = Random().nextInt(5) + 1;
 
     setState(() {
