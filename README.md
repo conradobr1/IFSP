@@ -44,4 +44,5 @@ DESENVOLVIMENTO PARA DISPOSITIVOS MÓVEIS <br>
 04 [WEEK](https://github.com/conradobr1/IFSP/tree/main/MDD/4Week) <BR>
 05 [WEEK](https://github.com/conradobr1/IFSP/tree/main/MDD/5Week) <BR>
 06 [WEEK](https://github.com/conradobr1/IFSP/tree/main/MDD/6Week) <BR>
-
+07 [WEEK](https://github.com/conradobr1/IFSP/tree/main/MDD/7Week) <BR>
+08 [WEEK](https://github.com/conradobr1/IFSP/tree/main/MDD/8Week) <BR>
